@@ -1,0 +1,17 @@
+<h1>Todos</h1>
+<%= link_to "New Todo", new_todo_path, class: "btn btn-primary todo-button" %>
+
+<% @todos.each do |todo| %>
+  <div class="todo-index">
+	  <div class="<%= 'cross-out' if todo.complete == true %>">
+	  <h4><%= link_to todo.name, todo_path(todo) %></h4>
+	  Due Date: <%= todo.due_date %><br>
+
+	  Complete: <%= todo.complete == true ? todo.complete = "Yes" : todo.complete = "No" %>
+    <%= check_box_tag "todo_ids[]", todo.id %>
+	  </div>
+  </div>
+<% end %> 
+<%= submit_tag "Mark Completed" %>
+
+

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :todos
-	map.resources :todos, :collection => { :edit_multiple => :post, :update_multiple => :put }
 
   root 'welcome#index'
 end

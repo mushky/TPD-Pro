@@ -1,17 +1,22 @@
 class TodosController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-  	@todos = Todo.all.order("created_at DESC")
+    @todos = current_user.todos.all.order("created_at DESC")
   end
 
   def new
-  	@todo = Todo.new
+  	@todo = current_user.todos.new
   end
 
-  def create
-  	@todo = Todo.new(todo_params)
-  	@todo.save
 
-  	redirect_to @todo
+  def create
+    @todo = current_user.todos.new(todo_params)
+  	if @todo.save
+      redirect_to @todo
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -42,6 +47,6 @@ class TodosController < ApplicationController
 
   private
     def todo_params
-    	params.require(:todo).permit(:name,:due_date,:complete)
+    	params.require(:todo).permit(:name,:due_date,:complete,:user_id)
     end
 end

@@ -3,19 +3,25 @@ class TodosController < ApplicationController
 
   def index
     @todos = current_user.todos.all.order("created_at DESC")
+    @todo = current_user.todos.new    
   end
 
   def new
   	@todo = current_user.todos.new
   end
-
-
+  
   def create
+    #binding.pry
+    @todos = Todo.all
     @todo = current_user.todos.new(todo_params)
-  	if @todo.save
-      redirect_to @todo
-    else
-      render 'new'
+
+    respond_to do |format|
+    	if @todo.save
+        flash[:success] = "Todo added"
+        format.html { redirect_to todos_path, notice: 'Todo added' }      
+      else
+        format.html { render action: "new" }
+      end
     end
   end
 
@@ -25,24 +31,32 @@ class TodosController < ApplicationController
 
 
   def edit
-    @todo = Todo.find(params[:id])
+    @todo = Todo.find(params[:id])    
+    #respond_to do |format|
+      #format.html { render :edit }
+      #format.js {}
+    #end
+
   end
 
   def update
     @todo = Todo.find(params[:id])
-
-    if @todo.update_attributes(todo_params)
-    	redirect_to @todo
-    else
-    	render 'edit'
-    end
+    #respond_to do |format|
+      if @todo.update_attributes(todo_params)
+        redirect_to todos_path
+    	  #format.html { redirect_to @todo, notice: "Todo Updated" }
+        #format.js
+      else
+    	  render 'edit'
+      end
+    #end
   end
 
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
+    @todo = Todo.find(params[:id])
+    @todo.destroy
  
-    redirect_to articles_path
+    redirect_to todos_path
   end  
 
   private

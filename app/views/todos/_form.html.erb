@@ -1,4 +1,5 @@
-<%= form_for(@todo) do |f| %>
+<h2>Add Todo</h2>
+<%= form_with(model: @todo) do |f| %>
   <% f.hidden_field :user_id , :value => current_user.id %>
 
   <% if @todo.errors.any? %>
@@ -8,7 +9,7 @@
   	</h2>
   	<ul>
       <% @todo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <li><%= msg %></li>
    	</ul> 
       <% end %>
     </div>
@@ -17,22 +18,21 @@
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %>
-  
   </p>
 
   <p>
     <%= f.label :due_date %>
-    <%= f.date_select :due_date, { :discard_year => true} %>
+    <%= f.date_select :due_date, { :discard_year => true } %>
   </p>
 
   <p>
     <%= f.label :complete %>
-    <%= f.check_box(:complete) %>
+    <%= f.check_box :complete %>
   </p>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary todo-button" %>
   </p>
 <% end %>
 
-<%= link_to 'Back', todos_path %>
+<%#= link_to 'Back', todos_path %>

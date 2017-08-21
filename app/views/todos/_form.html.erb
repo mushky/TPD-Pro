@@ -14,17 +14,17 @@
     </div>
   <% end %>
 
-  <p>
+  <p class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </p>
 
-  <p>
+  <p class="form-group">
     <%= f.label :due_date %>
-    <%= f.date_select :due_date, { :discard_year => true } %>
+    <%= f.date_select :due_date, { :discard_year => true }, class: 'form-control' %>
   </p>
 
-  <p>
+  <p class="form-group">
     <%= f.label :complete %>
     <%= f.check_box :complete %>
   </p>
@@ -34,4 +34,4 @@
   </p>
 <% end %>
 
-<%#= link_to 'Back', todos_path %>
+<%= link_to 'Back', todos_path %>

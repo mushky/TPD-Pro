@@ -1,23 +1,57 @@
-<div id='todo-form'>
-  <% @todos.each do |todo| %>
-    <div class='todo-index'>
-	    <div class='<%= 'cross-out' if todo.complete == true %>'>
-		    <h4 id='todo'>
-		    	<%= link_to todo.name, todo_path(todo) %>
-		    </h4>
+<div class="col-md-5">
+  <h2>Open <%= link_to 'More Work?', new_todo_path, remote: true, class: 'btn btn-danger', id: 'todo-new-button' %>	
+  </h2>
+	<div id='todo-form'>
+	  <% @todos.each do |todo| %>
+	    <% if todo.complete == false %>
+	      <div class='todo-index'>
+		      <div class='<%= 'cross-out' if todo.complete == true %>'>
+			      <h4 id='todo'>
+			    	  <%= link_to todo.name, todo_path(todo) %>
+			      </h4>
 
-		    <div id='todo'>
-		    	Due Date: <%= todo.due_date %><br>
-		    </div>
+				    <div id='todo'>
+				    	Due Date: <%= todo.due_date %><br>
+				    </div>
 
-		    <div id='todo'>
-		    	Complete: <%= todo.complete == true ? todo.complete = 'Yes' : todo.complete = 'No' %>
-		    </div>
-		    <div id='todo'>
-		    	<%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
-		    	<%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
-		    </div>
-	    </div>
-    </div>
-  <% end %> 
+				    <div id='todo'>
+				    	Complete: <%= todo.complete == true ? todo.complete = 'Yes' : todo.complete = 'No' %>
+				    </div>
+			      <div id='todo'>
+			    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
+			    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
+			      </div>
+		      </div>
+	      </div>
+	    <% end %>
+	  <% end %> 
+	</div>	
+</div>
+<div class="col-md-5">
+	<h2>Closed</h2>
+	<div id='todo-form'>
+	  <% @todos.each do |todo| %>
+	    <% if todo.complete == true %>
+	      <div class='todo-index'>
+		      <div class='<%= 'cross-out' if todo.complete == true %>'>
+			      <h4 id='todo'>
+			    	  <%= link_to todo.name, todo_path(todo) %>
+			      </h4>
+
+				    <div id='todo'>
+				    	Due Date: <%= todo.due_date %><br>
+				    </div>
+
+				    <div id='todo'>
+				    	Complete: <%= todo.complete == true ? todo.complete = 'Yes' : todo.complete = 'No' %>
+				    </div>
+			      <div id='todo'>
+			    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
+			    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
+			      </div>
+		      </div>
+	      </div>
+	    <% end %>
+	  <% end %> 
+	</div>
 </div>

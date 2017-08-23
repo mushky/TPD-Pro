@@ -5,17 +5,14 @@
 	  <% @todos.each do |todo| %>
 	    <% if todo.complete == false %>
 	      <div class='todo-index'>
-		      <h4 id='todo'>
+		      <h5 id='todo'>
 		    	  <%= link_to todo.name, todo_path(todo) %>
-		      </h4>
+		      </h5>
 
 			    <div id='todo'>
-			    	Due Date: <%= todo.due_date %><br>
+			    	<strong>Due Date:</strong> <%= todo.due_date %><br>
 			    </div>
 
-			    <div id='todo'>
-			    	Complete: <%= todo.complete %>
-			    </div>
 		      <div id='todo'>
 		    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
 		    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>

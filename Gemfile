@@ -21,6 +21,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'pry', '~> 0.10.4'
 gem 'record_tag_helper', '~> 1.0'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

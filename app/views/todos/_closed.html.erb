@@ -4,22 +4,21 @@
 	  <% @todos.each do |todo| %>
 	    <% if todo.complete == true %>
 	      <div class='todo-index'>
-		      <div class='<%= 'cross-out' if todo.complete == true %>'>
-			      <h5 id='todo'>
-			    	  <%= link_to todo.name, todo_path(todo) %>
-			      </h5>
+	      	<div class="well well-sm">
+			      <div class='<%= 'cross-out' if todo.complete == true %>'>
+				      <p id='todo'>
+				    	  <%= link_to todo.name, todo_path(todo) %>
+				      </p>
 
-				    <div id='todo'>
-				    	Due Date: <%= todo.due_date %><br>
-				    </div>
+					    <div id='todo'>
+					    	Due Date: <%= todo.due_date %><br>
+					    </div>
 
-				    <div id='todo'>
-				    	Complete: <%= todo.complete == true ? todo.complete = 'Yes' : todo.complete = 'No' %>
-				    </div>
-			      <div id='todo'>
-			    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
-			    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
-			      </div>
+				      <div id='todo'>
+				    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
+				    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
+				      </div>
+				    </div> <!-- /well -->
 		      </div>
 	      </div>
 	    <% end %>

@@ -1,0 +1,16 @@
+class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  
+  def create
+    @todo = Todo.find(params[:todo_id])
+    @comment = @todo.comments.create(comment_params)
+  	#binding.pry
+
+    redirect_to todo_path(@todo)
+  end
+ 
+  private
+    def comment_params
+      params.require(:comment).permit(:commenter, :body)
+    end
+end

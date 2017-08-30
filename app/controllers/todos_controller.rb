@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @todos = current_user.todos.all.order("created_at DESC")
+    @todos = current_user.todos.all.order("created_at DESC").paginate(:page => params[:page])
     @todo = current_user.todos.new    
   end
 

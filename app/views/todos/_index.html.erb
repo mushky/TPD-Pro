@@ -1,4 +1,4 @@
-<div class="col-md-5">
+<div class="col-md-6">
   <h2>Open <%= link_to 'More Work?', new_todo_path, remote: true, class: 'btn btn-danger', id: 'todo-new-button' %>	
   </h2>
 	<div id='todo-form'>
@@ -6,7 +6,7 @@
 	    <% if todo.complete == false %>
 	      <div class='todo-index'>
 		      <h5 id='todo'>
-		    	  <%= link_to todo.name, todo_path(todo) %>
+		    	  <span class="btn-sm btn-warning badge"><%= todo.comments.size.to_s %></span> <%= link_to todo.name, todo_path(todo) %>
 		      </h5>
 
 			    <div id='todo'>

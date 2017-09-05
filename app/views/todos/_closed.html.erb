@@ -7,7 +7,10 @@
 	      	<div class="well well-sm">
 			      <div class='<%= 'cross-out' if todo.complete == true %>'>
 				      <p id='todo'>
-				    	  <%= link_to todo.name, todo_path(todo) %>
+				      	<% if todo.comments.size > 0 %>
+				    	  <span class="badge badge-pill badge-default"><%= todo.comments.size.to_s %>
+                <% end %>
+				    	  </span> <%= link_to todo.name, todo_path(todo) %>
 				      </p>
 
 					    <div id='todo'>

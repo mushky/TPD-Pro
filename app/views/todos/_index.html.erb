@@ -6,7 +6,7 @@
 	    <% if todo.complete == false %>
 	      <div class='todo-index'>
 		      <h5 id='todo'>
-		    	  <span class="btn-sm btn-warning badge"><%= todo.comments.size.to_s %></span> <%= link_to todo.name, todo_path(todo) %>
+		    	  <span class="badge badge-pill badge-default"><%= todo.comments.size.to_s %></span> <%= link_to todo.name, todo_path(todo) %>
 		      </h5>
 
 			    <div id='todo'>

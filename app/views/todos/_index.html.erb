@@ -9,6 +9,10 @@
 		    	  <span class="badge badge-pill badge-default"><%= todo.comments.size.to_s %></span> <%= link_to todo.name, todo_path(todo) %>
 		      </h5>
 
+		      <div id="todo">
+		      	<strong>Assigned Date:</strong> <%= todo.created_at.strftime("%B %d, %Y") %>
+		      </div>
+		      
 			    <div id='todo'>
 			    	<strong>Due Date:</strong> <%= todo.due_date.strftime("%B %d, %Y") %><br>
 			    </div>

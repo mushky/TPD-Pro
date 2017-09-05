@@ -1,24 +1,26 @@
 <div id='todo'>
 	<h3><%= @todo.name %></h3>
-	<p><strong>Due Date:</strong> <%= @todo.due_date %></p>
+	<p><strong>Due Date:</strong> <%= @todo.due_date.strftime("%B %d, %Y") %></p>
 	<p><strong>Complete:</strong> <%= @todo.complete %></p>
   
-  <div class="jumbotron">
-	<% @todo.comments.each do |comment| %>
-	  <p>
-	    <strong><%= comment.commenter %></strong>
-	  </p>
-	 
-	  <p>
-	    <%= comment.body %>
-	  </p>
-
+  <% if @todo.comments.length > 0 %>
+	  <div class="jumbotron">
+		<% @todo.comments.each do |comment| %>
+		  <p>
+		    <strong><%= comment.commenter %></strong>
+		  </p>
+		 
+		  <p>
+		    <%= comment.body %>
+		  </p>
+	  <% end %>
 	<% end %>
   </div>
 
   <hr>
-  <h5><em>Add Comments</em></h5>
 	<%= form_for([@todo, @todo.comments.build]) do |f| %>
+	 	<em>Commenting as <strong><%= current_user.email %></strong></em>
+
 	  <p>
 	    <%= f.hidden_field :commenter, value: current_user.email %>
 	  </p>

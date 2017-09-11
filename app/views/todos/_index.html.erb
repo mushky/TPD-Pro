@@ -5,12 +5,14 @@
 	  <% @todos.each do |todo| %>
 	    <% if todo.complete == false %>
 	      <div class='todo-index'>
-		      <h5 id='todo'>
-		       	<% if todo.comments.size > 0 %>
-		    	    <span class="badge badge-pill badge-warning"><%= todo.comments.size.to_s %></span> 
+		      <strong>
+		      	<p id='todo'>
+		       	  <% if todo.comments.size > 0 %>
+		    	      <span class="badge badge-pill badge-warning"><%= todo.comments.size.to_s %></span> 
 		    	    <% end %>
 		    	    <%= link_to todo.name, todo_path(todo) %>
-		      </h5>
+		        </p>
+		      </strong>
 
 		      <div id="todo">
 		      	<strong>Assigned Date:</strong> <%= todo.created_at.strftime("%B %d, %Y") %>

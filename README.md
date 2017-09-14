@@ -1,7 +1,6 @@
 Begin Creating Projects Model
 
 class Project
-  belongs_to :user
   has_many :todos
 
 

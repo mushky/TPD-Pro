@@ -1,35 +1,38 @@
-<div class="col-md-6">
-  <h2>Open <%= link_to 'More Work?', new_todo_path, remote: true, class: 'btn btn-danger', id: 'todo-new-button' %>	
-  </h2>
-	<div id='todo-form'>
-	  <% @todos.each do |todo| %>
-	    <% if todo.complete == false %>
-	      <div class='todo-index'>
-		      <strong>
-		      	<p id='todo'>
-		       	  <% if todo.comments.size > 0 %>
-		    	      <span class="badge badge-pill badge-warning"><%= todo.comments.size.to_s %></span> 
-		    	    <% end %>
-		    	    <%= link_to todo.name, todo_path(todo) %>
-		        </p>
-		      </strong>
+<div class="row">
+	<div class="col-md-6">
+	  <h2>Open <%= link_to 'More Work?', new_todo_path, remote: true, class: 'btn btn-danger', id: 'todo-new-button' %>	
+	  </h2>
 
-		      <div id="todo">
-		      	<strong>Assigned Date:</strong> <%= todo.created_at.strftime("%B %d, %Y") %>
+		<div id='todo-form'>
+		  <% @todos.each do |todo| %>
+		    <% if todo.complete == false %>
+		      <div class='todo-index'>
+			      <strong>
+			      	<p id='todo'>
+			       	  <% if todo.comments.size > 0 %>
+			    	      <span class="badge badge-pill badge-warning"><%= todo.comments.size.to_s %></span> 
+			    	    <% end %>
+			    	    <%= link_to todo.name, todo_path(todo) %>
+			        </p>
+			      </strong>
+
+			      <div id="todo">
+			      	<strong>Assigned Date:</strong> <%= todo.created_at.strftime("%B %d, %Y") %>
+			      </div>
+
+				    <div id='todo'>
+				    	<strong>Due Date:</strong> <%= todo.due_date.strftime("%B %d, %Y") %><br>
+				    </div>
+
+			      <div id='todo'>
+			    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
+			    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
+			      </div>
 		      </div>
+		    <% end %>
+		  <% end %> 
+		</div>	
+	</div>
 
-			    <div id='todo'>
-			    	<strong>Due Date:</strong> <%= todo.due_date.strftime("%B %d, %Y") %><br>
-			    </div>
-
-		      <div id='todo'>
-		    	  <%= link_to 'Edit', edit_todo_path(todo), remote: true %> |
-		    	  <%= link_to 'Delete', @todo, method: :delete, :data => {:confirm => 'Are you sure?'} %>
-		      </div>
-	      </div>
-	    <% end %>
-	  <% end %> 
-	</div>	
 </div>
-
 <%= render 'closed' %>

@@ -11,11 +11,11 @@ class Todo
 #routes.rb
 
 resources :projects do
-  resources :tasks
+  resources :todos
 end
 
 #todos_controller.rb
 
 def index
-  @todos = Project.find(params[:project_id]).tasks
+  @todos = Project.find(params[:project_id]).todos
 end
